@@ -1,0 +1,68 @@
+// 公共前缀
+// @import '@/uni_modules/lime-ui/style/index.scss';
+/* #ifndef APP-NVUE */
+// @import './icon';
+/* #endif */
+
+$prefix: l !default;
+$icon: #{$prefix}-icon;
+
+/* #ifndef APP-NVUE || UNI-APP-X */
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* #endif */
+
+.#{$icon} {
+	/* #ifndef APP-NVUE || UNI-APP-X */
+	display: inline-block;
+	position: relative;
+	width: 1em;
+	height: 1em;
+	/* #endif */
+	/* #ifdef APP-NVUE || UNI-APP-X */
+	width: 40rpx;
+	height: 40rpx;
+	/* #endif */
+	
+	&--font {
+		line-height: 1;
+		text-align: center;
+		font-size: inherit;
+		
+		/* #ifndef APP-NVUE || UNI-APP-X */
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		// -webkit-font-smoothing: antialiased;
+		// -moz-osx-font-smoothing: grayscale;
+		// -webkit-background-clip: text;
+		// background-clip: text;
+		/* #endif */
+	}
+	/* #ifndef APP-NVUE || UNI-APP-X */
+	&--image {
+		&.is-inherit {
+			background-color: currentColor;
+			mask: var(--l-icon) no-repeat;
+			mask-size: 100% 100%;
+			// -webkit-mask: var(--l-icon) no-repeat;
+			// -webkit-mask-size: 100% 100%;	
+		}
+		&:not(.is-inherit) {
+			background: var(--l-icon) no-repeat;
+			background-size: 100% 100%;
+			background-color: transparent;
+			// -webkit-background: var(--l-icon) no-repeat;
+			// -webkit-background-size: 100% 100%;
+		}
+	}
+	&__image {
+		width: 100%;
+		height: 100%;
+	}
+	/* #endif */
+}

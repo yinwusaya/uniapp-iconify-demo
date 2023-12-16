@@ -1,0 +1,122 @@
+<template>
+	<!-- #ifdef UNI-APP-X -->
+	<view class="l-icon" @click="onClick">
+		<text>未完成</text>
+	</view>
+	<!-- #endif -->
+</template>
+<script lang="uts">
+	// #ifdef UNI-APP-X
+	const name : string = 'l-icon';
+	export default {
+		name,
+		props: {
+			ariaHidden: {
+				type: Boolean,
+				default: false
+			},
+			ariaRole: {
+				type: String,
+				default: ''
+			},
+			ariaLabel: {
+				type: String,
+				default: ''
+			},
+			ariaLabelledby: {
+				type: String,
+				default: ''
+			},
+			ariaDescribedby: {
+				type: String,
+				default: ''
+			},
+			ariaBusy: {
+				type: Boolean,
+				default: false
+			},
+			lStyle: {
+				type: String,
+				default: ''
+			},
+			name: {
+				type: String,
+				default: ''
+			},
+			color: {
+				type: String,
+				default: ''
+			},
+			size: {
+				type: String,
+				default: ''
+			},
+			prefix: {
+				type: String,
+				default: ''
+			},
+			// type: String,
+			inherit: {
+				type: Boolean,
+				default: true
+			}
+		},
+		data() {
+			return {
+				iconUrl: '',
+				hasImage: false,
+			}
+		},
+		computed: {
+			hasHost() : boolean {
+				return this.name.indexOf('/') !== -1
+			},
+			styles() : any {
+				return {
+					width: this.size,
+					height: this.size,
+				}
+			},
+			isImage() : boolean {
+				return this.hasHost || /\.(.+)$/i.test(this.name) || this.hasImage
+			},
+			classes() : any {
+				// const { prefix } = this
+				// const name = 'l-icon'
+				const iconPrefix : string = this.prefix.length > 0 ? this.prefix : name
+				const iconName : string = `${iconPrefix}-${this.name}`
+				const cls : string[] = []
+				if (!this.isImage && this.prefix.length > 0) {
+					cls.push(iconPrefix)
+				}
+				if (!this.isImage) {
+					cls.push(iconName)
+					cls.push(`${name}--font`)
+				}
+				if (this.isImage) {
+					cls.push(`${name}--image`)
+				}
+				if (this.isImage && (this.color.length > 0 || this.inherit)) {
+					cls.push(`is-inherit`)
+				}
+				return cls.join(' ')
+				// return {
+				// 	[iconPrefix]: !this.isImage && prefix,
+				// 	[iconName]: !this.isImage,
+				// 	[`${name}--image`]: this.isImage,
+				// 	[`${name}--font`]: !this.isImage,
+				// 	[`is-inherit`]: this.isImage && (this.color || this.inherit)
+				// }
+			},
+		},
+		methods: {
+			onClick() { },
+			imageLoad() { },
+			imageError() { },
+		}
+	}
+	// #endif
+</script>
+<style lang="scss">
+	@import './index.scss';
+</style>

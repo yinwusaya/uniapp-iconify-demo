@@ -1,0 +1,7 @@
+node_modules/
+package-lock.json
+unpackage/dist/dev/
+unpackage/dist/build/.automator/
+unpackage/dist/build/mp-weixin/
+.hbuilderx/
+dist/
